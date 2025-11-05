@@ -1,0 +1,218 @@
+/* =========================================================
+   TYPOGRAPHY FOUNDATION (Light + Dark Mode)
+   Author: Joshua Saguit
+   ========================================================= */
+
+/* -------------------------
+   ROOT VARIABLES
+   ------------------------- */
+@layer base {
+    :root {
+        /* Font Families */
+        --font-sans: system-ui, -apple-system, "Inter", "Roboto", "Segoe UI",
+            sans-serif;
+        --font-serif: "Source Serif Pro", Georgia, serif;
+        --font-mono: "JetBrains Mono", monospace;
+
+        /* Font Scale (fluid using clamp) */
+        --font-size-xs: clamp(0.75rem, 0.4vw + 0.7rem, 0.875rem);
+        --font-size-sm: clamp(0.875rem, 0.5vw + 0.8rem, 1rem);
+        --font-size-base: clamp(1rem, 0.6vw + 0.9rem, 1.125rem);
+        --font-size-lg: clamp(1.25rem, 0.8vw + 1rem, 1.5rem);
+        --font-size-xl: clamp(1.5rem, 1vw + 1.1rem, 2rem);
+        --font-size-2xl: clamp(2rem, 1.5vw + 1.25rem, 3rem);
+        --font-size-3xl: clamp(2.5rem, 2vw + 1.5rem, 4rem);
+
+        /* Font Weights */
+        --weight-regular: 400;
+        --weight-medium: 500;
+        --weight-semibold: 600;
+        --weight-bold: 700;
+
+        /* Line Heights */
+        --lh-tight: 1.2;
+        --lh-normal: 1.5;
+        --lh-loose: 1.75;
+
+        /* Colors - LIGHT MODE */
+        --text-primary: hsl(0, 0%, 12%);
+        --text-secondary: hsl(0, 0%, 35%);
+        --text-muted: hsl(0, 0%, 55%);
+        --bg-body: hsl(0, 0%, 98%);
+        --accent: hsl(220, 70%, 45%);
+        --accent-hover: hsl(220, 80%, 35%);
+        --border: hsl(0, 0%, 90%);
+
+        /* Layout Rhythm */
+        --max-line-length: 65ch;
+        --paragraph-spacing: 1em;
+    }
+
+    /* -------------------------
+   DARK MODE OVERRIDES
+   ------------------------- */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --text-primary: hsl(0, 0%, 92%);
+            --text-secondary: hsl(0, 0%, 70%);
+            --text-muted: hsl(0, 0%, 55%);
+            --bg-body: hsl(220, 15%, 10%);
+            --accent: hsl(220, 80%, 65%);
+            --accent-hover: hsl(220, 90%, 75%);
+            --border: hsl(220, 10%, 25%);
+        }
+    }
+
+    /* -------------------------
+   GLOBAL RESET
+   ------------------------- */
+    html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        font-size: var(--font-size-base);
+        line-height: var(--lh-normal);
+        color: var(--text-primary);
+        background-color: var(--bg-body);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        max-width: 100%;
+        overflow-x: hidden;
+        transition: color 0.25s ease, background-color 0.25s ease;
+    }
+
+    /* -------------------------
+   HEADINGS
+   ------------------------- */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-sans);
+        font-weight: var(--weight-bold);
+        line-height: var(--lh-tight);
+        color: var(--text-primary);
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+    }
+
+    h1 {
+        font-size: var(--font-size-3xl);
+    }
+    h2 {
+        font-size: var(--font-size-2xl);
+    }
+    h3 {
+        font-size: var(--font-size-xl);
+    }
+    h4 {
+        font-size: var(--font-size-lg);
+    }
+    h5 {
+        font-size: var(--font-size-base);
+    }
+    h6 {
+        font-size: var(--font-size-sm);
+    }
+
+    /* -------------------------
+   PARAGRAPHS & TEXT
+   ------------------------- */
+    p {
+        font-size: var(--font-size-base);
+        line-height: var(--lh-loose);
+        color: var(--text-primary);
+        max-width: var(--max-line-length);
+        margin-bottom: var(--paragraph-spacing);
+        transition: color 0.25s ease;
+    }
+
+    small,
+    .text-sm {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+    }
+
+    strong {
+        font-weight: var(--weight-semibold);
+    }
+    em {
+        font-style: italic;
+    }
+
+    /* -------------------------
+   LINKS
+   ------------------------- */
+    a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    a:hover,
+    a:focus {
+        color: var(--accent-hover);
+        text-decoration: underline;
+    }
+
+    /* -------------------------
+   LISTS
+   ------------------------- */
+    ul,
+    ol {
+        margin-bottom: var(--paragraph-spacing);
+        padding-left: 1.5rem;
+        line-height: var(--lh-loose);
+    }
+    li + li {
+        margin-top: 0.25em;
+    }
+
+    /* -------------------------
+   BLOCKQUOTES
+   ------------------------- */
+    blockquote {
+        font-style: italic;
+        color: var(--text-secondary);
+        border-left: 4px solid var(--accent);
+        padding-left: 1rem;
+        margin: 1.5em 0;
+        transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    /* -------------------------
+   UTILITY CLASSES
+   ------------------------- */
+    .text-center {
+        text-align: center;
+    }
+    .text-right {
+        text-align: right;
+    }
+    .text-muted {
+        color: var(--text-muted);
+    }
+    .text-uppercase {
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .text-mono {
+        font-family: var(--font-mono);
+    }
+
+    /* -------------------------
+   RESPONSIVE TWEAKS
+   ------------------------- */
+    @media (max-width: 600px) {
+        body {
+            line-height: var(--lh-loose);
+        }
+        p {
+            max-width: 90%;
+        }
+    }
+}
